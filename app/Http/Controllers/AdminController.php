@@ -32,5 +32,30 @@ class AdminController extends Controller
     {
         return view('admin.notice');
     }
-   
+   public function addcashier(Request $request)
+
+{ $cashier=new Cashier();
+    $cashier->email=$request->input('email');
+    $cashier->password=$request->input('password');
+    $cashier->accounttype= 'Cashier';
+    $cashier->save();
+   return redirect()->back()->with('status','le compte caissier a été créé avec succés ');
+
+}
+public function updatecashier(Request $request)
+{
+
+    $cashier=Cashier::find($request->input('id'));
+    $cashier->email=$request->input('email');
+    $cashier->password=$request->input('password');
+    $cashier->update();
+    return redirect()->back()->with('status','le compte caissier a été modifié avec succés ');
+
+}
+public function deletecashier($id)
+{  $cashier=Cashier::find($id);
+    $cashier->delete();
+    return redirect()->back()->with('status','le compte caissier a été supprimé avec succés ');
+
+}
 }

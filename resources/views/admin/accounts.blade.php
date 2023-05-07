@@ -11,6 +11,13 @@
           All Staff Accounts <button class="btn btn-outline-success btn-sm float-right" data-toggle="modal" data-target="#exampleModal">Add New Account</button>
         </div>
         <div class="card-body bg-dark text-white">
+          @if (Session::has('status'))
+       <div class="alert alert-success">
+        {{Session::get('status')}}
+       </div>
+
+              
+          @endif
           <table class="table table-bordered">
             <thead>
               <tr>
@@ -27,8 +34,8 @@
                 <td>{{$cashier->password}}</td>
                 <td>{{$cashier->accounttype}}</td>
                 <td>
-                  <a href='' class='btn btn-primary btn-sm' data-toggle="modal" data-target="#exampleModalUpdate">Edit</a>
-                  <a href='' class='btn btn-danger btn-sm'>Delete</a>
+                  <a href='' class='btn btn-primary btn-sm' data-toggle="modal" data-target="#exampleModalUpdate{{$cashier->id}}">Edit</a>
+                  <a href='/admin/deletecashier/{{$cashier->id}}' class='btn btn-danger btn-sm'>Delete</a>
                 </td>
               </tr>
                   
@@ -56,12 +63,13 @@
             </button>
           </div>
           <div class="modal-body">
-            <form method="POST">
+            <form method="POST" action="/admin/addcashier">
+              @csrf
                 <div class="form-group">
                   <input class="form-control w-75 mx-auto" type="email" name="email" required placeholder="Email">
                 </div>
                 <div class="form-group">
-                  <input class="form-control w-75 mx-auto" type="password" name="password" required placeholder="Password">
+                  <input class="form-control w-75 mx-auto" type="password" name="password" required placeholder="Password" minlength="5">
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -74,8 +82,8 @@
     </div>
 
     <!-- Modal Update -->
-
-    <div class="modal fade" id="exampleModalUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    @foreach ( $cashiers as $cashier )
+    <div class="modal fade" id="exampleModalUpdate{{$cashier->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content bg-dark text-white">
           <div class="modal-header">
@@ -85,12 +93,14 @@
             </button>
           </div>
           <div class="modal-body">
-            <form method="POST">
+            <form method="POST" action="/admin/updatecashier">
+              @csrf
                 <div class="form-group">
-                  <input class="form-control w-75 mx-auto" type="email" name="email" required placeholder="Email">
+                  <input  type="hidden" name="id"  value="{{$cashier->id}}">
+                  <input class="form-control w-75 mx-auto" type="email" name="email" required placeholder="Email" value="{{$cashier->email}}">
                 </div>
                 <div class="form-group">
-                  <input class="form-control w-75 mx-auto" type="password" name="password" required placeholder="Password">
+                  <input class="form-control w-75 mx-auto" type="password" name="password" required placeholder="Password" value="{{$cashier->password}}">
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -101,5 +111,8 @@
         </div>
       </div>
     </div>
+    @endforeach
+
+ 
 
 @endsection
