@@ -9,39 +9,39 @@
     <div class="container">
       <div class="card w-100 text-center shadowBlue">
         <div class="card-header">
-          Account profile for Fayyaz Khan<kbd>#1513410837</kbd>  
+          Account profile for {{$account->name}}<kbd> {{$account->accountnumber}}</kbd>  
         </div>
         <div class="card-body bg-dark text-white">
           <div class="text-center">
-            <img src="{{asset('images/hillary.jpg')}}" height="100" width="100" alt="" class="rounded-circle m-2" style="border : 2px solid #FFF;">
+            <img src="/storage/account_images/{{$account->photo}}" height="100" width="100" alt="" class="rounded-circle m-2" style="border : 2px solid #FFF;">
           </div>
           <table class="table table-bordered">
             <tbody>
               <tr>
                 <td>Name</td>
-                <th>Fayyaz Khan</th>
+                <th>{{$account->name}}</th>
                 <td>Account No</td>
-                <th>1513410837</th>
+                <th>{{$account->accountnumber}}</th>
               </tr><tr>
                 <td>Branch Name</td>
-                <th>Dera Ghazi Khan</th>
-                <td>Brach Code</td>
-                <th>100101</th>
+                <th>{{$account->branchname}}</th>
+                <td>Branch Code</td>
+                <th>{{$account->branchcode}}</th>
               </tr><tr>
                 <td>Current Balance</td>
-                <th>12121</th>
+                <th>{{$account->balance}}</th>
                 <td>Account Type</td>
-                <th>current</th>
+                <th>{{$account->accounttype}}</th>
               </tr><tr>
                 <td>Cnic</td>
-                <th>3240338834902</th>
+                <th>{{$account->cnic}}</th>
                 <td>City</td>
-                <th>Taunsa</th>
+                <th>{{$account->city}}</th>
               </tr><tr>
                 <td>Contact Number</td>
-                <th>03356910260</th>
+                <th>{{$account->phone}}</th>
                 <td>Address</td>
-                <th>Dera Ghazi Khan</th>
+                <th>{{$account->address}}</th>
               </tr>
             </tbody>
           </table>

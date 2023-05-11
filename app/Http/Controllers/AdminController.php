@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 use App\Models\Cashier;
 use App\Models\Account;
@@ -12,8 +13,8 @@ class AdminController extends Controller
 {
     //
     public function home()
-    {
-        return view('admin.home');
+    {$accounts=Account::all();
+        return view('admin.home')->with("accounts",$accounts);
     }
     public function accounts()
     { $cashiers=Cashier::all();
@@ -27,9 +28,9 @@ class AdminController extends Controller
     {
         return view('admin.feedback'); 
     }
-    public function clientdetails()
-    {
-        return view('admin.clientdetails');
+    public function clientdetails($id)
+    {$account=Account::find($id);
+        return view('admin.clientdetails')->with("account",$account);
     }
     public function notice()
     {
@@ -101,6 +102,15 @@ public function saveaccount(Request $request)
 
     $path=$request->file('image')->storeAs('public/account_images',$fileNameTostore);
     return back()->with('status','le compte client a été créé avec succés');
+
+}
+
+public function deleteclient($id)
+{
+    $account=Account::find($id);
+    Storage::delete('public/account_images/'.$account->photo);
+    $account->delete();
+    return back()->with('status','le compte client a été supprimé avec succés');
 
 }
 }

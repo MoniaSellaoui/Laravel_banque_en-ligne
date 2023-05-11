@@ -28,12 +28,13 @@ Route::get('/admin/home',[AdminController::class, 'home']);
 Route::get('/admin/accounts',[AdminController::class, 'accounts']);
 Route::get('/admin/addnewaccounts',[AdminController::class, 'addaccounts']);
 Route::get('/admin/feedback',[AdminController::class, 'feedback']);
-Route::get('/admin/clientdetails',[AdminController::class, 'clientdetails']);
+Route::get('/admin/clientdetails/{id}',[AdminController::class, 'clientdetails']);
 Route::get('/admin/notice',[AdminController::class, 'notice']);
 Route::post('/admin/addcashier',[AdminController::class, 'addcashier']);
 Route::post('/admin/updatecashier',[AdminController::class, 'updatecashier']);
 Route::get('/admin/deletecashier/{id}',[AdminController::class, 'deletecashier']);
 Route::post('/admin/saveaccount',[AdminController::class, 'saveaccount']);
+Route::get('/admin/deleteclient/{id}',[AdminController::class, 'deleteclient']);
 
 //client controller pages
 Route::get('/client/home',[ClientController::class, 'home']);
