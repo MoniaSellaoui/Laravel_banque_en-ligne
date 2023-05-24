@@ -3,13 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use App\Models\Notice;
+use App\Models\Message;
 
 class ClientController extends Controller
 {
     //
     public function home()
-    {
-        return view('client.home');
+    { if(Session::has('client'))
+        { return view('client.home');
+
+        }
+        else{
+            return redirect('/login');
+        }
+       
     }
     public function account()
     {
@@ -25,10 +34,23 @@ class ClientController extends Controller
     }
     public function notice()
     {
-        return view('client.notice');
+        $notices=Notice::where('accountnumber',Session::get('client')->accountnumber)->get();
+        return view('client.notice')->with('notices',$notices);
     }
     public function feedback()
     {
         return view('client.feedback');
+    }
+
+    public function clientmessage(Request $request)
+    {
+        $message=new Message();
+        $message->name=Session::get('client')->name;
+        $message->accountnumber=Session::get('client')->accountnumber;
+        $message->phone=Session::get('client')->phone;
+        $message->message=$request->input('message');
+
+        $message->save();
+        return redirect()->back()->with('status','le message a été envoyer avec success');
     }
 }

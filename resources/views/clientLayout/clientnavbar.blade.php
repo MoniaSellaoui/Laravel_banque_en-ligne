@@ -16,11 +16,11 @@
           <li class="nav-item ">  <a class="nav-link {{request()->is('client/fundstransfer')?'active':''}}" href="{{url('client/fundstransfer')}}">Funds Transfer</a></li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
-            <a href="" class="btn btn-outline-success" data-toggle="tooltip" title="Your current Account Balance">Acount Balance : Rs.16200</a>  
+            <a href="" class="btn btn-outline-success" data-toggle="tooltip" title="Your current Account Balance">Acount Balance : ${{Session::get('client')->balance}}</a>  
             <a href="accounts.html" data-toggle="tooltip" title="Account Summary" class="btn btn-outline-primary mx-1" ><i class="fa fa-book fa-fw"></i></a> 
-            <a href="notice.html" data-toggle="tooltip" title="View Notice" class="btn btn-outline-primary mx-1" ><i class="fa fa-envelope fa-fw"></i></a> 
-            <a href="feedback.html" data-toggle="tooltip" title="Help?" class="btn btn-outline-info mx-1" ><i class="fa fa-question fa-fw"></i></a> 
-            <a href="" data-toggle="tooltip" title="Logout" class="btn btn-outline-danger mx-1" ><i class="fa fa-sign-out fa-fw"></i></a>    
+            <a href="/client/notice" data-toggle="tooltip" title="View Notice" class="btn btn-outline-primary mx-1" ><i class="fa fa-envelope fa-fw"></i></a> 
+            <a href="/client/feedback" data-toggle="tooltip" title="Help?" class="btn btn-outline-info mx-1" ><i class="fa fa-question fa-fw"></i></a> 
+            <a href="/client/clientlogout" data-toggle="tooltip" title="Logout" class="btn btn-outline-danger mx-1" ><i class="fa fa-sign-out fa-fw"></i></a>    
         </form>    
       </div>
     </nav><br><br><br>

@@ -11,13 +11,21 @@
     <div class="container">
       <div class="card w-100 text-center shadowBlue">
         <div class="card-header">
-          Send Notice to Ali khan  
+          Send Notice {{$account->name}}  
         </div>
         <div class="card-body">
-          <form method="POST">
+          
+          @if (Session::has('status'))
+          <div class="alert alert-success">
+            {{Session::get('status')}}
+          </div>
+              
+          @endif
+          <form action="/admin/sendnotice" method="POST">
+            {{ csrf_field() }}
             <div class="alert alert-success w-50 mx-auto">
-              <h5>Write notice for Ali khan</h5>
-              <input type="hidden" name="userId" value="2">
+              <h5>Write notice for{{$account->name}}  </h5>
+              <input type="hidden" name="accountnumber" value=" {{$account->accountnumber}}">
               <textarea class="form-control" name="notice" required placeholder="Write your message"></textarea>
               <button type="submit" name="send" class="btn btn-primary btn-block btn-sm my-1">Send</button>
             </div>

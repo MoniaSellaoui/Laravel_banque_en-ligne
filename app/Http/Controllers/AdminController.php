@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Cashier;
 use App\Models\Account;
 use App\Models\Statement;
+use App\Models\Notice;
+use App\Models\Message;
 
 class AdminController extends Controller
 {
@@ -25,17 +27,20 @@ class AdminController extends Controller
         return view('admin.addnewaccount');
     }
     public function feedback()
-    {
-        return view('admin.feedback'); 
+    {$messages=Message::get();
+        return view('admin.feedback')->with('messages',$messages);
     }
+
     public function clientdetails($id)
     {$account=Account::find($id);
         return view('admin.clientdetails')->with("account",$account);
     }
-    public function notice()
-    {
-        return view('admin.notice');
+
+    public function notice($id)
+    {$account=Account::find($id);
+        return view('admin.notice')->with('account',$account);
     }
+
    public function addcashier(Request $request)
 
 { $cashier=new Cashier();
@@ -113,4 +118,23 @@ public function deleteclient($id)
     return back()->with('status','le compte client a été supprimé avec succés');
 
 }
+
+public function sendnotice(Request $request)
+{
+$notice=new Notice();
+$notice->message=$request->notice;
+$notice->accountnumber=$request->input('accountnumber');
+$notice->save();
+return back()->with('status','le notice a été envoyé avec succéss');
+
 }
+
+public function deletemessage($id)
+{
+$message=Message::find($id);
+$message->delete();
+return redirect()->back()->with('status','le message a été supprimé avec succés ');
+}
+
+}
+

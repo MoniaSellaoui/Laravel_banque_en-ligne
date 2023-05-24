@@ -11,11 +11,19 @@
         <div class="card-header text-center">
           Help Card
         </div>
+        @if (Session::has('status'))
+          <div class="alert alert-success">
+            {{Session::get('status')}}
+          </div>
+              
+          @endif
         <div class="card-body">
-            <form method="POST">
+          
+            <form  action="/client/clientmessage"  method="POST">
+              @csrf
                 <div class="alert alert-success w-50 mx-auto">
                   <h5>Enter your message</h5>
-                  <textarea class="form-control" name="msg" required placeholder="Write your message"></textarea>
+                  <textarea class="form-control" name="message" required placeholder="Write your message"></textarea>
                   <button type="submit" name="send" class="btn btn-primary btn-block btn-sm my-1">Send</button>
                 </div>
             </form>

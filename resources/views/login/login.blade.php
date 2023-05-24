@@ -19,6 +19,12 @@
     <div class="card rounded-0">
       <div class="card-header" role="tab" id="headingOne">
         <h5 class="mb-0">
+          @if (Session::has('status'))
+          <div class="alert alert-danger">
+            {{Session::get('status')}}
+          </div>
+              
+          @endif
           <a style="text-decoration: none;" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
           <button class="btn btn-outline-success btn-block">User Login</button>
           </a>
@@ -26,10 +32,12 @@
       </div>
 
       <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+       
         <div class="card-body">
-        <form method="POST">
-          <input type="email" value="some@gmail.com" name="email" class="form-control" required placeholder="Enter Email">
-          <input type="password" name="password" value="some" class="form-control" required placeholder="Enter Password">
+        <form action="/login/clientaccess" method="POST">
+      @csrf
+          <input type="email"  name="email" class="form-control" required placeholder="Enter Email">
+          <input type="password" name="password"  class="form-control" required placeholder="Enter Password">
           <button type="submit" class="btn btn-primary btn-block btn-sm my-1" name="userLogin">Enter </button>
         </form>
         </div>

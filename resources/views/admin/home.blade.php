@@ -38,7 +38,7 @@
             <td>{{$account->phone}}</td>
             <td>
               <a href="/admin/clientdetails/{{$account->id}}" class='btn btn-success btn-sm' data-toggle='tooltip' title="View More info">View</a>
-              <a href="{{url('admin/notice')}}" class='btn btn-primary btn-sm' data-toggle='tooltip' title="Send notice to this">Send Notice</a>
+              <a href="/admin/notice/{{$account->id}}" class='btn btn-primary btn-sm' data-toggle='tooltip' title="Send notice to this">Send Notice</a>
               <a href="/admin/deleteclient/{{$account->id}}" class='btn btn-danger btn-sm' data-toggle='tooltip' title="Delete this account">Delete</a>
             </td>
           </tr>
