@@ -11,7 +11,7 @@
   </head>
   
   <body style="background: url(style/images/bg-login2.jpg);background-size: 100%">
-  <h1 class="alert alert-success rounded-0">MCB Bank<small class="float-right text-muted" style="font-size: 12pt;"><kbd>Presented by:Tariq Fareed</kbd></small></h1>
+  <h1 class="alert alert-success rounded-0">MCB Bank<small class="float-right text-muted" style="font-size: 12pt;"></small></h1>
   <br>
   <br>
   <div id="accordion" role="tablist" class="w-25 float-right shadowBlack" style="margin-right: 222px">
@@ -70,10 +70,13 @@
         </h5>
       </div>
       <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
-        <div class="card-body">
-          <form method="POST">
-          <input type="email" value="cashier@cashier.com" name="email" class="form-control" required placeholder="Enter Email">
-          <input type="password" name="password" value="cashier" class="form-control" required placeholder="Enter Password">
+      
+        <div  class="card-body">
+
+          <form  action="/login/cashieraccess" method="POST">
+            {{ csrf_field() }}
+          <input type="email"  name="email" class="form-control" required placeholder="Enter Email">
+          <input type="password" name="password" class="form-control" required placeholder="Enter Password">
           <button type="submit"  class="btn btn-primary btn-block btn-sm my-1" name="cashierLogin">Enter </button>
         </form>
         </div>

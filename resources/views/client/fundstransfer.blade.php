@@ -10,11 +10,24 @@
           <div class="card-header text-center">
             Funds Transfer
           </div>
-          <div class="card-body">
-            <form method="POST">
+          @if (Session::has('status'))
+          <div class="alert alert-danger">
+            {{Session::get('status')}}
+          </div>
+              
+          @endif
+          @if (Session::has('status1'))
+          <div class="alert alert-success">
+            {{Session::get('status1')}}
+          </div>
+              
+          @endif
+          <div  class="card-body">
+            <form action="/client/clienttransfer" method="POST">
+              @csrf
               <div class="alert alert-success w-50 mx-auto">
                 <h5>New Transfer</h5>
-                <input type="text" name="otherNo" class="form-control " placeholder="Enter Receiver Account number" required>
+                <input type="text" name="accountnumber" class="form-control " placeholder="Enter Receiver Account number" required>
                 <button type="submit" name="get" class="btn btn-primary btn-bloc btn-sm my-1">Get Account Info</button>
               </div>
             </form>

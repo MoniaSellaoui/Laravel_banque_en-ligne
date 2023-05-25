@@ -24,6 +24,8 @@ Route::get('/', function () {
 Route::get('/login',[LoginController::class,'login']);
 Route::post('/login/clientaccess',[LoginController::class,'clientaccess']);
 Route::get('/client/clientlogout',[LoginController::class,'clientlogout']);
+Route::post('/login/cashieraccess',[LoginController::class,'cashieraccess']);
+Route::get('/cashier/cashierlogout',[LoginController::class,'cashierlogout']);
 
 //admin controller pages
 Route::get('/admin/home',[AdminController::class, 'home']);
@@ -48,6 +50,12 @@ Route::get('/client/fundstransfer',[ClientController::class, 'fundstransfer']);
 Route::get('/client/notice',[ClientController::class, 'notice']);
 Route::get('/client/feedback',[ClientController::class, 'feedback']);
 Route::post('/client/clientmessage',[ClientController::class, 'clientmessage']);
+Route::post('/client/clienttransfer',[ClientController::class, 'clienttransfer']);
+Route::post('/client/transfer',[ClientController::class, 'transfer']);
 
 //cashier controller pages
 Route::get('/cashier/home',[CashierController::class, 'home']);
+Route::post('/cashier/clienttransfer',[CashierController::class, 'clienttransfer']);
+Route::get('/cashier/transaction',[CashierController::class, 'transaction']);
+Route::post('/cashier/clientwithdraw',[CashierController::class, 'clientwithdraw']);
+Route::post('/cashier/clientdeposit',[CashierController::class, 'clientdeposit']);

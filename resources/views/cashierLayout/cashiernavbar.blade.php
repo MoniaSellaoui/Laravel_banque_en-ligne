@@ -9,12 +9,12 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item ">
-          <a class="nav-link active" href="cindex.html">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link active" href="/cashier/home">Home <span class="sr-only">(current)</span></a>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <button class="btn btn-outline-success">Welecome Cashier</button>
-        <a href="" data-toggle="tooltip" title="Logout" class="btn btn-outline-danger mx-1" ><i class="fa fa-sign-out fa-fw"></i></a>    
+        <a href="/cashier/cashierlogout" data-toggle="tooltip" title="Logout" class="btn btn-outline-danger mx-1" ><i class="fa fa-sign-out fa-fw"></i></a>    
       </form>    
     </div>
   </nav><br><br><br>

@@ -13,31 +13,31 @@
         </div>
         <div class="card-body">
           <div class="text-center">
-              <img src="{{asset('style/images/hillary.jpg')}}" height="150" width="150" alt="" class="rounded-circle m-2" style="border : 5px solid #555;">
+              <img src="/storage/account_images/{{$account->photo}}" height="150" width="150" alt="" class="rounded-circle m-2" style="border : 5px solid #555;">
           </div>
           <table class="table table-striped table-dark w-75 mx-auto">
             <thead>
               <tr>
                 <td scope="col">Account No.</td>
-                <th scope="col">10054777</th>
+                <th scope="col">{{$account->accountnumber}}</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <th scope="row">Branch</th>
-                <td>Dera Ghazi Khan</td>
+                <td>{{$account->branchname}}</td>
               </tr>
               <tr>
                 <th scope="row">Branch Code</th>
-                <td>100101</td>
+                <td>{{$account->branchcode}}</td>
               </tr>
               <tr>
                 <th scope="row">Account Type</th>
-                <td>Saving</td>
+                <td>{{$account->accounttype}}</td>
               </tr>
               <tr>
                 <th scope="row">Account Created</th>
-                <td>2017-12-14 05:50:06</td>
+                <td>{{$account->created_at}}</td>
               </tr>
             </tbody>
           </table>

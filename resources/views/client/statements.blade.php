@@ -11,8 +11,36 @@
           Transaction made against you account
         </div>
         <div class="card-body">
-          <div class='alert alert-secondary'>You withdraw Rs.1012 from your account at 2017-12-17 08:04:58</div><div class='alert alert-success'>You deposit Rs.600 in your account at 2017-12-17 08:04:39</div><div class='alert alert-success'>You deposit Rs.12 in your account at 2017-12-17 07:59:20</div><div class='alert alert-secondary'>You withdraw Rs.12 from your account at 2017-12-17 07:59:02</div><div class='alert alert-success'>You deposit Rs.1200 in your account at 2017-12-17 07:56:29</div>  
+          @foreach ($statements as $statement)
+
+              @if ($statement->source==Session::get('client')->accountnumber)
+                  @if ($statement->status==0)
+                      <div class='alert alert-success'>
+                        You deposit ${{$statement->amonnt}} in your account at {{$statement->created_at}}
+                      </div>
+                    @elseif($statement->status==1)
+                    <div class='alert alert-primary'>
+                      You transfer ${{$statement->amount}} to account num {{$statement->accountnumber}} at {{$statement->created_at}}
+                    </div>
+                    @elseif($statement->status==3)
+                    <div class='alert alert-secondary'>
+                      You withdraw ${{$statement->amount}} from your account at {{$statement->created_at}}
+                    </div>
+                      
+                  @endif
+                  
+              @else
+                    @if ($statement->destination==Session::get('client')->accountnumber && $statement->status==2)
+                        <div class='alert alert-warning'>
+                          You received ${{$statement->amount}} from{{$statement->source}} your account at {{$statement->created_at}}
+                        </div>
+                    @endif 
+              @endif
+              
+          @endforeach
+          
         </div>
+
         <div class="card-footer text-muted">
         MCB Bank  
         </div>
